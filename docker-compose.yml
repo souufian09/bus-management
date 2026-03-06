@@ -1,0 +1,73 @@
+
+services:
+
+
+  # BASE DE DONNÉES — AUTH SERVICE
+
+  auth-db:
+    image: postgres:15
+    container_name: auth-db
+    environment:
+      POSTGRES_DB: auth_db
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password123
+    ports:
+      - "5432:5432"
+    volumes:
+      - auth-db-data:/var/lib/postgresql/data
+
+
+  # BASE DE DONNÉES — USER SERVICE
+
+  user-db:
+    image: postgres:15
+    container_name: user-db
+    environment:
+      POSTGRES_DB: user_db
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password123
+    ports:
+      - "5433:5432"
+    volumes:
+      - user-db-data:/var/lib/postgresql/data
+
+
+  # BASE DE DONNÉES — TRANSPORT SERVICE
+
+  transport-db:
+    image: postgres:15
+    container_name: transport-db
+    environment:
+      POSTGRES_DB: transport_db
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password123
+    ports:
+      - "5434:5432"
+    volumes:
+      - transport-db-data:/var/lib/postgresql/data
+
+
+  # BASE DE DONNÉES — PAIEMENT SERVICE
+
+  paiement-db:
+    image: postgres:15
+    container_name: paiement-db
+    environment:
+      POSTGRES_DB: paiement_db
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password123
+    ports:
+      - "5435:5432"
+    volumes:
+      - paiement-db-data:/var/lib/postgresql/data
+
+
+
+
+# SAUVEGARDER LES DONNÉES
+
+volumes:
+  auth-db-data:
+  user-db-data:
+  transport-db-data:
+  paiement-db-data:
