@@ -1,0 +1,13 @@
+﻿namespace UserService.DTOs
+{
+    public class UserResponseDto
+    {
+        public int IdUtilisateur { get; set; }
+
+        public string Nom { get; set; } = string.Empty;
+
+        public string Email { get; set; } = string.Empty;
+
+        public string Role { get; set; } = string.Empty;
+    }
+}
