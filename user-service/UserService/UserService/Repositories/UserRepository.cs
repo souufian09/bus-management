@@ -69,5 +69,21 @@ namespace UserService.Repositories
             await _context.SaveChangesAsync();
             return true;
         }
+        public async Task<List<Utilisateur>> Search(
+            string? nom, string? email)
+        {
+            var query = _context.Utilisateurs
+                .AsQueryable();
+
+            if (!string.IsNullOrEmpty(nom))
+                query = query.Where(
+                    u => u.Nom.Contains(nom));
+
+            if (!string.IsNullOrEmpty(email))
+                query = query.Where(
+                    u => u.Email.Contains(email));
+
+            return await query.ToListAsync();
+        }
     }
 }

@@ -89,7 +89,23 @@ namespace UserService.Controllers
                 });
             }
         }
-
+        [HttpGet("passagers")]
+        public async Task<IActionResult> GetPassagers()
+        {
+            try
+            {
+                var users = await _userService
+                    .GetPassagers();
+                return Ok(users);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new
+                {
+                    message = ex.Message
+                });
+            }
+        }
 
         [HttpPost("users")]
         public async Task<IActionResult> Create(
@@ -129,6 +145,26 @@ namespace UserService.Controllers
             }
         }
 
+        //new -------------------------------------------------------------------
+        [HttpPut("users/{id}/profil")]
+        public async Task<IActionResult> UpdateProfil(
+            int id, UpdateProfilDto dto)
+        {
+            try
+            {
+                var user = await _userService
+                    .UpdateProfil(id, dto);
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new
+                {
+                    message = ex.Message
+                });
+            }
+        }
+
         [HttpDelete("users/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -139,6 +175,26 @@ namespace UserService.Controllers
                 {
                     message = "Utilisateur supprimé"
                 });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new
+                {
+                    message = ex.Message
+                });
+            }
+        }
+        //new -----------------------------------------------------------------------------------
+        [HttpGet("users/search")]
+        public async Task<IActionResult> Search(
+            [FromQuery] string? nom,
+            [FromQuery] string? email)
+        {
+            try
+            {
+                var users = await _userService
+                    .Search(nom, email);
+                return Ok(users);
             }
             catch (Exception ex)
             {

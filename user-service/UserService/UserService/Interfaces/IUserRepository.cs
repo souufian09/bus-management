@@ -20,5 +20,8 @@ namespace UserService.Interfaces
         Task<Utilisateur> Update(Utilisateur user);
 
         Task<bool> Delete(int id);
+
+        //new
+        Task<List<Utilisateur>> Search(string? nom, string? email);
     }
 }
